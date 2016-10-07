@@ -5,16 +5,18 @@ void ofApp::setup()
 {
     ofBackground(0);
     ofSetFrameRate(60);
-    
+
     // 1,000,000 particles
     unsigned w = 1000;
     unsigned h = 1000;
-    
+
     particles.init(w, h);
-    
-    if (ofIsGLProgrammableRenderer()) particles.loadShaders("shaders330/update", "shaders330/draw");
-    else particles.loadShaders("shaders120/update", "shaders120/draw");
-    
+
+    //if (ofIsGLProgrammableRenderer()) {
+      particles.loadShaders("shaders330/update", "shaders330/draw");
+    //}
+    //else particles.loadShaders("shaders120/update", "shaders120/draw");
+
     // initial positions
     // use new to allocate 4,000,000 floats on the heap rather than
     // the stack
@@ -32,10 +34,10 @@ void ofApp::setup()
     }
     particles.loadDataTexture(ofxGpuParticles::POSITION, particlePosns);
     delete[] particlePosns;
-    
+
     // initial velocities
     particles.zeroDataTexture(ofxGpuParticles::VELOCITY);
-    
+
     // listen for update event to set additonal update uniforms
     ofAddListener(particles.updateEvent, this, &ofApp::onParticlesUpdate);
 }
@@ -107,6 +109,6 @@ void ofApp::gotMessage(ofMessage msg){
 }
 
 //--------------------------------------------------------------
-void ofApp::dragEvent(ofDragInfo dragInfo){ 
+void ofApp::dragEvent(ofDragInfo dragInfo){
 
 }
