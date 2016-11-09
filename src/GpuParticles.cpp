@@ -134,6 +134,7 @@ namespace itg
 
     void GpuParticles::draw()
     {
+        glEnable( GL_PROGRAM_POINT_SIZE );
         drawShader.begin();
         ofNotifyEvent(drawEvent, drawShader, this);
         setUniforms(drawShader);
