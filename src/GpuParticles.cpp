@@ -98,14 +98,14 @@ namespace itg
         if (loadDefaultShaders)
         {
             updateShader.load(UPDATE_SHADER_NAME);
-            drawShader.load(DRAW_SHADER_NAME);
+            drawShader.load(DRAW_SHADER_NAME + ".vert", DRAW_SHADER_NAME + ".frag", DRAW_SHADER_NAME + ".geom");
         }
     }
 
     void GpuParticles::loadShaders(const string& updateShaderName, const string& drawShaderName)
     {
         updateShader.load(updateShaderName);
-        drawShader.load(drawShaderName);
+        drawShader.load(drawShaderName + ".vert", drawShaderName + ".frag", drawShaderName + ".geom");
     }
 
     void GpuParticles::update()
@@ -134,7 +134,6 @@ namespace itg
 
     void GpuParticles::draw()
     {
-        glEnable( GL_PROGRAM_POINT_SIZE );
         drawShader.begin();
         ofNotifyEvent(drawEvent, drawShader, this);
         setUniforms(drawShader);
